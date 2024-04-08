@@ -18,7 +18,7 @@ pipeline {
         stage("Deploy on Test") {
             steps {
                 // Deploy to Apache HTTP Server
-                sh "scp -i /path/to/ssh/key target/*.war user@13.233.123.102:/var/www/html/app.war"
+                sh "scp -i /var/lib/jenkins/workspace/Test-jenkins-war target/*.war user@13.233.123.102:/var/www/html/app.war"
             }
         }
         stage("Deploy on Prod") {
@@ -28,7 +28,7 @@ pipeline {
             }
             steps {
                 // Deploy to Apache HTTP Server
-                sh "scp -i /path/to/ssh/key target/*.war user@13.233.123.102:/var/www/html/app.war"
+                sh "scp -i /var/lib/jenkins/workspace/Test-jenkins-war target/*.war user@13.233.123.102:/var/www/html/app.war"
             }
         }
     }
