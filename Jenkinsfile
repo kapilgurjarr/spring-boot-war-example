@@ -19,7 +19,7 @@ pipeline {
                 script {
                     def sourceFile = "/var/lib/jenkins/workspace/Test-jenkins-war/target/*.war"
                     def destFolder = "/var/www/html/"
-                    sh "cp -a ${sourceFile} ${destFolder}"
+                    sh "sudo cp -a ${sourceFile} ${destFolder}"
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     def sourceFile = "/var/lib/jenkins/workspace/Test-jenkins-war/target/*.war"
                     def destFolder = "/var/www/html/"
-                    sh "cp -a ${sourceFile} ${destFolder}"
+                    sh "sudo cp -a ${sourceFile} ${destFolder}"
                 }
             }
         }
