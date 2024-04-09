@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage("Test") {
             steps {
-                // mvn test
                 sh "mvn test"
             }
         }
@@ -17,12 +16,11 @@ pipeline {
         }
         stage("Deploy on Test") {
             steps {
-                // Deploy to Apache HTTP Server
-                sh  """
-                SOURCE_FILE=/var/lib/jenkins/workspace/Test-jenkins-war/target/*.war
-                DEST_FOLDER=/var/www/html/
-                sudo cp -a \$SOURCE_FILE \$DEST_FOLDER
-                """
+                script {
+                    def sourceFile = "/var/lib/jenkins/workspace/Test-jenkins-war/target/*.war"
+                    def destFolder = "/var/www/html/"
+                    sh "cp -a ${sourceFile} ${destFolder}"
+                }
             }
         }
         stage("Deploy on Prod") {
@@ -31,12 +29,11 @@ pipeline {
                 ok "Yes we Should"
             }
             steps {
-                // Deploy to Apache HTTP Server
-                sh """ 
-                SOURCE_FILE=/var/lib/jenkins/workspace/Test-jenkins-war/target/*.war
-                DEST_FOLDER=/var/www/html/
-                sudo cp -a \$SOURCE_FILE \$DEST_FOLDER
-                """
+                script {
+                    def sourceFile = "/var/lib/jenkins/workspace/Test-jenkins-war/target/*.war"
+                    def destFolder = "/var/www/html/"
+                    sh "cp -a ${sourceFile} ${destFolder}"
+                }
             }
         }
     }
