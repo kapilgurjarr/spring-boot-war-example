@@ -20,7 +20,7 @@ pipeline {
                 // Deploy to Apache HTTP Server
                 sh  """
                 SOURCE_FILE=/var/lib/jenkins/workspace/Test-jenkins-war/target/*.war
-                DEST_FOLDER=/var/www/html/app/
+                DEST_FOLDER=/var/www/html/
                 sudo cp -a \$SOURCE_FILE \$DEST_FOLDER
                 """
             }
