@@ -18,7 +18,11 @@ pipeline {
         stage("Deploy on Test") {
             steps {
                 // Deploy to Apache HTTP Server
-                sh "scp -i ~/.ssh/id_rsa /var/lib/jenkins/workspace/Test-jenkins-war/target/*.war user@13.235.45.71:/var/www/html/app/"
+                sh  """
+                SOURCE_FILE=/var/lib/jenkins/workspace/Test-jenkins-war/target/*.war
+                DEST_FOLDER=/var/www/html/app/
+                sudo cp -a \$SOURCE_FILE \$DEST_FOLDER
+                """
             }
         }
         stage("Deploy on Prod") {
